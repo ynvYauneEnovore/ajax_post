@@ -26,4 +26,18 @@ class PostController extends Controller
 
         return view('posts', compact('posts'));
     }
+
+    public function loadMoreProducts(Request $request)
+{
+    $page = $request->input('page', 1);
+    $perPage = 10; // La misma cantidad que se utilizó en el controlador de la vista
+
+    $offset = ($page - 1) * $perPage;
+
+    $newProducts = Product::offset($offset)->limit($perPage)->get();
+
+    return response()->json(['html' => view('products.load-more', compact('newProducts'))->render()]);
+}
+
+
 }

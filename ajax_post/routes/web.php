@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
+Route::get('products/load-more', [ProductController::class, 'loadMoreProducts'])->name('products.load-more');
+
 
